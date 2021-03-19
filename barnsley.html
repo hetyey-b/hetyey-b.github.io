@@ -1,0 +1,162 @@
+<!--
+    TODO: SHIFT+ALT+S
+        -> Function: add selected fern values to the input boxes
+        -> Function: read values from input boxes
+        -> Function: check on value change, if values match a preset fern
+        -> Function: p value! Change function to work between 0-1
+            -> Maybe add a chance to normalize whatever is put in
+                -> I can actually calculate with any probability, not just stuff
+                   that sums to 1
+        -> HTML: add an iterations counter
+        -> HTML: add warnings about high iteration numbers
+        -> HTML: add color selector for background and fern
+        -> TEST: test out updating everything dynamically, upon changes
+            -> Maybe add a checkbox to turn off dynamic updating?
+
+        -> CSS: make things look better
+            -> New font
+            -> "Dark mode" theme
+            -> Add some nice tooltips for explaining e.g. normalizing p values
+                    
+        -> Github: figure out whether I can link to it even in a different repo or not
+            -> Add it to my website either way
+        -> Github: change big title bar project to this one, maybe use a gif as well
+            -> progressive buildup of elements, like one every millisecond, to show progress?
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="barnsley.css">
+    <title>Barnsley fern</title>
+</head>
+<body>
+    <div id="openingText">
+        <h1>Barnsley fern</h1>
+        <p>
+            The Barnsley fern is a fractal named after the British mathematician, Michael Barnsley.
+        </p>
+        <p>
+            It uses four transformations:
+        </p>
+        <a href="https://en.wikipedia.org/wiki/Barnsley_fern#Construction" target="_blank">
+            <img src="images/barnsley_transformations.png">
+        </a>
+        <p>
+            Each iteration, a transformation is applied to the previous point, starting at <code>(0,0)</code>.
+            We choose which one to apply randomly:
+        </p>
+        <ul>
+            <li><code>f1</code> with a chance of 1%</li>
+            <li><code>f2</code> with a chance of 85%</li>
+            <li><code>f3</code> with a chance of 7%</li>
+            <li><code>f3</code> with a chance of 7%</li>
+        </ul>
+        <p>
+            For a more real world understanding, f1 maps out the stem, f2 the smaller leaflets,
+            f3 the largest left-hand leaflet, and f4 the largest right-hand leaflet.
+        </p>
+
+        <h2>Barnsley fern "mutations"</h2>
+        <p>
+            Each transformation is defined by just 6 numbers, plus a probability for each of them.
+            This means, the Barnsley fern "ruleset" can be represented by just 28 numbers.
+            Changing these numbers can result in interesting, new fractals.
+        </p>
+    </div>
+
+    <div id="fernMenu">
+        <p>Give the transformations you want, or select a preset one!</p>
+        <pre><code>
+    f:
+        X<sub>n+1</sub> = a * X<sub>n</sub> + b * Y<sub>n</sub> + c
+        Y<sub>n+1</sub> = d * X<sub>n</sub> + e * Y<sub>n</sub> + f
+        </code></pre>  
+        <table>
+            <tr>
+                <th></th>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+                <th>d</th>
+                <th>e</th>
+                <th>f</th>
+                <th class="pColumn">p</th>
+            </tr>
+            <tr>
+                <th>f1</th>
+                <td><input id="f1_a" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f1_b" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f1_c" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f1_d" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f1_e" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f1_f" type="number" step="0.01" class="fernParam"></td>
+                <td class="pColumn"><input id="f1_p" type="number" step="0.01" class="fernParam"></td>
+            </tr>
+            <tr>
+                <th>f2</th>
+                <td><input id="f2_a" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f2_b" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f2_c" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f2_d" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f2_e" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f2_f" type="number" step="0.01" class="fernParam"></td>
+                <td class="pColumn"><input id="f2_p" type="number" step="0.01" class="fernParam"></td>
+            </tr>
+            <tr>
+                <th>f3</th>
+                <td><input id="f3_a" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f3_b" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f3_c" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f3_d" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f3_e" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f3_f" type="number" step="0.01" class="fernParam"></td>
+                <td class="pColumn"><input id="f3_p" type="number" step="0.01" class="fernParam"></td>
+            </tr>
+            <tr>
+                <th>f4</th>
+                <td><input id="f4_a" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f4_b" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f4_c" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f4_d" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f4_e" type="number" step="0.01" class="fernParam"></td>
+                <td><input id="f4_f" type="number" step="0.01" class="fernParam"></td>
+                <td class="pColumn"><input id="f4_p" type="number" step="0.01" class="fernParam"></td>
+            </tr>
+        </table>
+
+        <div class="dropdown">
+            <button class="dropdownButton">Choose preset fern</button>
+            <div class="dropdownContent">
+                <button id="barnsley">Barnsley fern</button>
+                <!--src: wikipedia-->
+                <button id="cyclosorus">Cyclosorus</button>
+                <!--src: https://www.chradams.co.uk/fern/maker.html -->
+                <button id="culcita">Culcita</button>
+                <button id="fishbone">Fishbone</button>
+            </div>
+        </div>
+
+        <div id="miscControls">
+            <div id="checkBox">
+                <input type="checkbox" id="autoUpdate" name="autoUpdate">
+                <label for="autoUpdate">Auto update fern</label>
+            </div>
+            <button id="generate">Generate</button>
+        </div>
+    </div>
+
+
+    <div id="fernCanvas">
+        <canvas id="barnsley" width="540" height="540"></canvas>
+    </div>
+    
+    
+    
+    <!--Scripts-->
+    <script type="text/javascript" src="barnsley.js"></script>
+</body>
+</html>

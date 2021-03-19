@@ -1,0 +1,131 @@
+/*
+==================
+==================
+TABLE OF CONTENTS
+==================
+==================
+1. Layout
+    1.1. Opening Text
+    1.2. Fern menu
+        1.2.1. Fern menu - parameter picker
+        1.2.2. Fern menu - drop down button for preset ferns
+        1.2.3. Fern menu - misc. controls
+    1.3 Fern canvas
+*/
+
+
+/*
+==================
+1. Layout
+==================
+*/
+
+/*
+    1.1. Opening Text 
+*/
+#openingText {
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    padding: 0 20px 0 20px;
+    margin-bottom: 10px;
+
+    width: 90%;
+    min-width: fit-content;
+}
+
+/*
+    1.2. Fern menu
+*/
+#fernMenu {
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    padding: 0 20px 0 20px;
+    margin-bottom: 10px;
+
+    width: fit-content;
+
+    overflow-y: hidden;
+}
+
+/*
+        1.2.1. Fern menu - parameter picker
+*/
+#fernMenu input {
+    width: 50px;
+}
+#fernMenu table {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.pColumn {
+    padding-left: 20px;
+}
+
+/*
+        1.2.2. Fern menu - drop down button for preset ferns
+*/
+.dropdown {
+    float:left;
+    margin-bottom:10px;
+    width: fit-content;
+}
+.dropdownButton {
+    border: none;
+}
+.dropdownContent {
+    display:block;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdownContent button {
+    display: none;
+    border: none;       
+    width:100%;
+    text-align: left;
+}
+.dropdownContent button:hover {
+    background-color: #ddd;
+}
+/*sibling selector is useful here to make sure menu pops down when focused on*/
+.dropdownButton:focus ~ .dropdownContent button,     
+.dropdown:hover .dropdownContent button {
+    display:block;
+}
+/*
+        1.2.3. Fern menu - misc. controls
+*/
+#miscControls {
+    float: right;
+}
+#generate {
+    display:block;
+    border:none;
+    float:right;
+    margin-bottom:10px;
+}
+#checkBox {
+    display: block;
+    margin-bottom: 7px;
+}
+#autoUpdate {
+    position: relative;
+    left: 20px;
+}
+
+
+/*
+    1.3 Fern canvas
+*/
+#fernCanvas canvas {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 10px;
+}
