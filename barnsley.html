@@ -128,6 +128,18 @@
             </tr>
         </table>
 
+        <p>It is not recommended to go above 1,000,000 iterations for the sake of speed</p>
+        <div id="metaParameters">
+            <div class="metaParamInputLabel">
+                <label for="stepY">Shift on Y axis: </label>
+                <input type="number" id="stepY">
+            </div>
+            <div class="metaParamInputLabel">
+                <label for="iterations" min="1" pattern="\d*">Iterations: </label>
+                <input type="number" id="iterationCount">
+            </div>
+        </div>
+        <br><br>
         <div class="dropdown">
             <button class="dropdownButton">Choose preset fern</button>
             <div class="dropdownContent">

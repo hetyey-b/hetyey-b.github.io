@@ -6,6 +6,7 @@ const barnsley_p1 = 0.01
 const barnsley_p2 = 0.85
 const barnsley_p3 = 0.07
 const barnsley_p4 = 0.07
+const barnsley_shiftUp = 0
 
 const cyclosorus_f1 = [0,0,0,0.25,0,-0.4]
 const cyclosorus_f2 = [0.95, 0.005, -0.005, 0.93, -0.002, 0.5]
@@ -15,6 +16,7 @@ const cyclosorus_p1 = 0.02
 const cyclosorus_p2 = 0.84
 const cyclosorus_p3 = 0.07
 const cyclosorus_p4 = 0.07
+const cyclosorus_shiftUp = 100
 
 const culcita_f1 = [0,0,0,0.25,0,-0.14]
 const culcita_f2 = [0.85,0.02,-0.02,0.83,0,1]
@@ -24,6 +26,7 @@ const culcita_p1 = 0.02
 const culcita_p2 = 0.84
 const culcita_p3 = 0.07
 const culcita_p4 = 0.07
+const culcita_shiftUp = 100
 
 const fishbone_f1 = [0,0,0,0.25,0,-0.4]
 const fishbone_f2 = [0.95,0.002,-0.002,0.93,-0.002,0.5]
@@ -33,6 +36,10 @@ const fishbone_p1 = 0.02
 const fishbone_p2 = 0.84
 const fishbone_p3 = 0.07
 const fishbone_p4 = 0.07
+const fishbone_shiftUp = 100
+
+const CANVAS_BACKGROUND_COLOR = "white"
+const CANVAS_FERN_COLOR = "darkgreen"
 
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
@@ -45,6 +52,9 @@ const dropdownButton = document.querySelector(".dropdownButton")
 
 const generateButton = document.querySelector("#generate")
 const autoUpdateCheckbox = document.querySelector("#autoUpdate")
+
+const stepYInput = document.querySelector("#stepY")
+const iterationCountInput = document.querySelector("#iterationCount")
 
 const f1_a = document.querySelector("#f1_a")
 const f1_b = document.querySelector("#f1_b")
@@ -79,6 +89,7 @@ const f4_f = document.querySelector("#f4_f")
 const f4_p = document.querySelector("#f4_p")
 
 //User influenced variables
+let shiftUp = 0;
 let iterationCount = 100000
 
 let chances = [0.01,0.85,0.07,0.07]
@@ -100,7 +111,7 @@ function barnsley() {
     let h = canvas.height
     let x=0.,y=0.,xw=0.,yw=0.,r
 
-    ctx.fillStyle = "white";
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOR;
     ctx.fillRect(0, 0, w, h);    
 
     const treshold1 = (chances[0]) * 100
@@ -146,13 +157,16 @@ function barnsley() {
         }
         x = xw;
         y = yw;
-        ctx.fillStyle = "green";
-        ctx.fillRect(x * 50 + (h/2), -y * 50 + w, 1, 1);
+        ctx.fillStyle = CANVAS_FERN_COLOR;
+        ctx.fillRect(x * 50 + (h/2), -y * 50 + w -shiftUp, 1, 1);
     }
     console.log("loop over with i: " + i)
 }
 
 function readValues() {
+    shiftUp = parseFloat(stepYInput.value)
+    iterationCount = parseInt(iterationCountInput.value)
+
     f1 = [f1_a.value,f1_b.value,f1_c.value,f1_d.value,f1_e.value,f1_f.value]
     f1 = f1.map(parseFloat)
     chances[0] = parseFloat(f1_p.value)
@@ -168,9 +182,16 @@ function readValues() {
     f4 = [f4_a.value,f4_b.value,f4_c.value,f4_d.value,f4_e.value,f4_f.value]
     f4 = f4.map(parseFloat)
     chances[3] = parseFloat(f4_p.value)
+
+    
 }
 
-function handleFernParams(f1Arr, f2Arr, f3Arr, f4Arr, p1, p2, p3, p4) {
+function handleFernParams(f1Arr, f2Arr, f3Arr, f4Arr, p1, p2, p3, p4, _shiftUp) {
+    shiftUp = _shiftUp
+
+    stepYInput.value = shiftUp
+    iterationCountInput.value = iterationCount
+
     f1_a.value = f1Arr[0]
     f1_b.value = f1Arr[1]
     f1_c.value = f1Arr[2]
@@ -207,25 +228,25 @@ function handleFernParams(f1Arr, f2Arr, f3Arr, f4Arr, p1, p2, p3, p4) {
 }
 
 function handleBarnsleyFernButtonClick() {
-    handleFernParams(barnsley_f1, barnsley_f2, barnsley_f3, barnsley_f4, barnsley_p1, barnsley_p2, barnsley_p3, barnsley_p4)
+    handleFernParams(barnsley_f1, barnsley_f2, barnsley_f3, barnsley_f4, barnsley_p1, barnsley_p2, barnsley_p3, barnsley_p4, barnsley_shiftUp)
     if(autoUpdateCheckbox.checked) {
         barnsley()
     }
 }
 function handleCyclosorusFernButtonClick() {
-    handleFernParams(cyclosorus_f1,cyclosorus_f2,cyclosorus_f3,cyclosorus_f4,cyclosorus_p1,cyclosorus_p2,cyclosorus_p3,cyclosorus_p4)
+    handleFernParams(cyclosorus_f1,cyclosorus_f2,cyclosorus_f3,cyclosorus_f4,cyclosorus_p1,cyclosorus_p2,cyclosorus_p3,cyclosorus_p4, cyclosorus_shiftUp)
     if(autoUpdateCheckbox.checked) {
         barnsley()
     }
 }
 function handleCulcitaFernButtonClick() {
-    handleFernParams(culcita_f1,culcita_f2,culcita_f3,culcita_f4,culcita_p1,culcita_p2,culcita_p3,culcita_p4)
+    handleFernParams(culcita_f1,culcita_f2,culcita_f3,culcita_f4,culcita_p1,culcita_p2,culcita_p3,culcita_p4, culcita_shiftUp)
     if(autoUpdateCheckbox.checked) {
         barnsley()
     }
 }
 function handleFishboneFernButtonClick() {
-    handleFernParams(fishbone_f1,fishbone_f2,fishbone_f3,fishbone_f4,fishbone_p1,fishbone_p2,fishbone_p3,fishbone_p4)
+    handleFernParams(fishbone_f1,fishbone_f2,fishbone_f3,fishbone_f4,fishbone_p1,fishbone_p2,fishbone_p3,fishbone_p4, fishbone_shiftUp)
     if(autoUpdateCheckbox.checked) {
         barnsley()
     }
@@ -244,6 +265,8 @@ let allFernParams = document.querySelectorAll(".fernParam")
 Array.prototype.slice.call(allFernParams).map(function(element) {
     element.addEventListener("input",handleFernParamInput)
 }) 
+stepYInput.addEventListener("input",handleFernParamInput)
+iterationCountInput.addEventListener("input",handleFernParamInput)
 
 
 

@@ -10,6 +10,7 @@ TABLE OF CONTENTS
         1.2.1. Fern menu - parameter picker
         1.2.2. Fern menu - drop down button for preset ferns
         1.2.3. Fern menu - misc. controls
+        1.2.4. Fern menu - meta parameters
     1.3 Fern canvas
 */
 
@@ -118,7 +119,22 @@ TABLE OF CONTENTS
     position: relative;
     left: 20px;
 }
-
+/*
+        1.2.4. Fern menu - meta parameters
+*/
+#metaParameters {
+    display: block;
+    float:left;
+    margin-bottom: 15px;
+}
+.metaParamInputLabel {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+#iterationCount {
+    min-width: 70px;
+}
 
 /*
     1.3 Fern canvas
@@ -129,3 +145,4 @@ TABLE OF CONTENTS
     border: 1px solid black;
     border-radius: 10px;
 }
+
