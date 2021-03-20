@@ -4706,3 +4706,11 @@ input, select, textarea {
 		}
 
 	}
+
+	.featured p {
+		font-style: normal;
+	}
+
+	.featured .techUsed {
+		font-style: italic;
+	}
