@@ -4714,3 +4714,20 @@ input, select, textarea {
 	.featured .techUsed {
 		font-style: italic;
 	}
+
+	.featuredPostImg {
+		max-height: 300px;
+		max-width: 300px;
+		margin: 5px;
+	}
+	
+	.greyBar {
+		width: fit-content;
+		height: fit-content;
+		background: #b3b7bb;
+		margin: 0 auto;
+	}
+
+	h1 {
+		text-align:center;
+	}
