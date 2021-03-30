@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "MapGen",
+"productVersion": "0.1",
+"dataUrl": "mapgen builds.data.unityweb",
+"wasmCodeUrl": "mapgen builds.wasm.code.unityweb",
+"wasmFrameworkUrl": "mapgen builds.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.21f1"
+}
