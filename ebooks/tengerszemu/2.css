@@ -1,0 +1,148 @@
+/* CSS to match style mapping */
+/* Sometimes only class is specified (no Tag specified) because
+Levels can translate to one of H1 to H6 or DIV (depending on options)
+Paragraph styles can translate to P or SPAN when inside of a heading (H1-H6)
+*/
+
+
+/* From Level Definitions */
+
+p.rd_mu
+{
+    font-weight: bold;
+    font-size: 164%;
+    color: #774444;
+    background-color: #EEEEDD;
+    text-align: center;
+    margin-top: 10pt;
+    margin-bottom: 9pt;
+    padding-top: 4pt;
+    border-top: 3pt solid;
+    padding-bottom: 4pt;
+    border-bottom: 3pt solid;
+    background-color: #EEEEDD;
+}
+
+p.rd_fejezet
+{
+    font-weight: bold;
+    font-size: 116%;
+    color: #774444;
+    text-align: center;
+    margin-top: 17pt;
+    margin-bottom: 17pt;
+    padding-top: 4pt;
+    border-top: 3pt solid;
+    padding-bottom: 4pt;
+    border-bottom: 3pt solid;
+}
+
+p.rd_cim1
+{
+    font-weight: bold;
+    font-size: 100%;
+    text-align: center;
+    margin-top: 18pt;
+    padding-top: 2pt;
+    border-top: 2pt solid;
+    padding-bottom: 2pt;
+    border-bottom: 2pt solid;
+}
+
+p.rd_cim2
+{
+    font-weight: bold;
+    font-size: 92%;
+    margin-top: 18pt;
+}
+
+p.rd_cim3
+{
+    font-weight: bold;
+    font-size: 80%;
+    margin-top: 18pt;
+}
+
+p.rd
+{
+        text-align:justify;
+        margin-top:2pt;
+        margin-bottom:10pt;
+        text-indent:0pt;
+}
+
+
+/* From Paragraph Style Definitions */
+
+.behuzott
+{
+    font-size: 92%;
+    text-align: justify;
+    margin-left: 36pt;
+}
+
+.csillag
+{
+    font-size: 92%;
+    text-align: center;
+    margin-top: 9pt;
+    margin-bottom: 9pt;
+}
+
+.drama
+{
+    font-size: 92%;
+    margin-top: 7pt;
+    margin-bottom: 7pt;
+    margin-left: 101pt;
+}
+
+.ritka
+{
+    font-size: 92%;
+    text-align: justify;
+    margin-top: 9pt;
+    margin-bottom: 9pt;
+    text-indent: 22pt;
+}
+
+.vers
+{
+    font-style: italic;
+    margin-top: 7pt;
+    margin-bottom: 7pt;
+    margin-left: 20pt;
+}
+
+.vonal
+{
+    font-size: 100%;
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+}
+
+
+/* From Field Definitions */
+
+SPAN.cim
+{
+    font-weight: bold;
+    font-size: 100%;
+}
+
+SPAN.datum
+{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 80%;
+    text-decoration: none;
+    color: #000080;
+}
+
+SPAN.Note
+{
+}
+
+SPAN.Popup
+{
+}
